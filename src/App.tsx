@@ -19,6 +19,7 @@ function App() {
 
   React.useEffect(() => {
     console.log("location", location);
+    send({ type: "url changed" });
   }, [location]);
 
   return (
