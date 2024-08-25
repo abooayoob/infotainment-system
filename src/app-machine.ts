@@ -1,7 +1,7 @@
 import { createMachine, assign, raise } from "xstate";
 
 import { NavigateFunction } from "react-router-dom";
-import { Activity } from "./types";
+import type { Activity } from "./types";
 
 // not good enough, improve later
 function findMostProgress({
@@ -29,7 +29,7 @@ export const createAppMachine = ({
 }) =>
   createMachine(
     {
-      /** @xstate-layout N4IgpgJg5mDOIC5QEMAOqB0BhAFmAxgNYAEArgE4A2AxANoAMAuoqKgPawCWALp2wHYsQAD0QBaAMwSArBgBMcgByKAbAHZFcgJwBGTXJUAaEAE9EOvRgAsEtdJ0qFOq-QmK1AXw-G0mXARIKGlodZiQQdi5eASFRBEkdCWtpKw1Eq3cLYzMERwxbHXo5ekKraWl6LTkvH3QMABk2ZAhiADNyNgBbMipqcjBmkwYw1g4ePkFwuJVpFQwtRQkqtS16VPpFK2zzNR0MRYk5QvoUxR0DT28QXwamlvaunsoMADVkSk4IZG4wJ+Iv7jIOhMISRcYxKbmdTyehqNQGQp6KxI7YIOTSNT5KxKKQnNxnVQ1a51RrNNodbpBV7vT7fX5Bf7fIEhEYRMbRSagOJ6egYeFaVYqNzOHSrCSoiTQxZVBSw6QLBxWIk3Un3ClPDAAZRwbAA7sQAG40gETYhgcgdcjUBn4HDIfgwCDDUHsiaxcTaOT5DZyKwqCzylTYtSoqypawqE5wmZClS6JVE-hsCBwIS+F1RN2Q+L2OZVOPohxqf2osRaTGi-QORaOPTSZV1fxEJ4Z8GckTiP2KeYGKq54uVcuogP7aRKM4ZBwlNQSBuYVXkx5BVsc93xQoVzaqCSV6V6YdqXklAUnQoSVKBue3MkPSlUakfAH0qiMwErrNc8TyjBI7e7pb7qYiDoloo7js4ZyRjoagJrU853Iud7PE2JD2i0sBgNw74Qp+CC2Ek2LnsUWjIooKRGEBaLfmRSgqIorgTmsKhXgut4atqeqGsa3ymualrYe23LlPISjSMovq6FIIaUWGFaicoqRHMolxwdg-R0sQbDkMQtpsBwYACWuki+j+yJCsstjlr6page4Y5aPhhw6IG9ZXDcACC+C8AaPA5KMmY4R2CDRhgY4KIGvpWAKigHnsFQWNKmgrCczFeB4QA */
+      /** @xstate-layout N4IgpgJg5mDOIC5QEMAOqB0BhAFmAxgNYAEArgE4A2AxANoAMAuoqKgPawCWALp2wHYsQAD0QBaAMwSArBgBMcgByKAbAHZFcgJwBGTXJUAaEAE9EOvRgAsEtdJ0qFOq-QmK1AXw-G0mXARIKGlodZiQQdi5eASFRBEkdCWtpKw1Eq3cLYzMERwxbHXo5ekKraWl6LTkvH3QMABk2ZAhiADNyNgBbMipqcjBmkwYw1g4ePkFwuJU8iWcylRddCRVFbPM1HQxFKTkdOWlben0JGpBfBqaW9q6eygwANWRKTghkbjA74jfuZDomISRcYxKbmdTyehqNQGQp6Kxw9YIA5qfJWJRSeiHZR6FRnC6NZptDrdIKPZ6vd6fILfd5-EIjCJjaKTUBxPT0DDQrRaegqNzOHQ8iSIlYonZVBSQ6RaRQOKx4uoE67Eu4YADKODYAHdiAA3ck-CbEMDkDrkajU-A4ZD8GAQYaApkTWLibRyfLHORWFQWaWLORqRFWVLWFSYqEqaR8lS6eXec51ACC+F4up4JgtqB+n3wFH6-G4ydT6Yd4SBzJdCFhSRlEhlai0NjDqkRO3k5QkqTm7mOUa88f4bAgcCEvkdUWdoPi9hUGCqMYODjUPsRYi0KMFmno3ulagkXoVfjwRDu4+BLJE4m9ijnBiqM+XlXXiN922kSllGQcJT3h8uhJuEkqDPCspzEQoN0UDI+U3cU9BfNQORKbk9B2Q4GwMP8lSJW5SSeF5sy+H5kBAydWXEaUMDhVQ5hlOC1lMRADi0N8P2cWUwx0NQ41qTBsMA1V-BPG0WlgMBuFIkFyIQWwkjRTtikbPQUiMRikUoxR31URRXE-bdcXjfErhwoD7g1bU9QNd4jRNM1JIvNlynkJRpGUL1llsIMQ32TTlFSPZlE8Qy6iwfpKWINhyGIK02A4MB7MrSQvSo+E+SqPcG2hKxVxY9x3y0WT9x0P1pD-ItODTbgclGCcpMvBAIwwd8FD9L0rG5Bici4rYKgsb1XHamVITKlMKvTDAABFxJNTpOH4T55uEbhiGQUbKuqxlaocxBNCsJqFGYxxgw6xFkTnHk7EXRQeXKOMvCAA */
       id: "app",
       initial: "Check url",
       predictableActionArguments: true,
@@ -46,7 +46,13 @@ export const createAppMachine = ({
             url: string;
           };
         },
-        events: {} as { type: "url changed" } | { type: "ready" },
+        events: {} as
+          | { type: "url changed" }
+          | { type: "ready" }
+          | {
+              type: "update currentActivity";
+              payload: Activity["children"][number];
+            },
       },
       states: {
         "Check url": {
@@ -97,7 +103,21 @@ export const createAppMachine = ({
         },
 
         "Create or choose": {},
-        Activity: {},
+        Activity: {
+          states: {
+            "Determine next activity": {},
+          },
+
+          initial: "Determine next activity",
+
+          on: {
+            "update currentActivity": {
+              target: "Activity",
+              internal: true,
+              actions: "update currentActivity",
+            },
+          },
+        },
       },
     },
     {
@@ -172,6 +192,26 @@ export const createAppMachine = ({
           };
         }),
         "raise ready": raise({ type: "ready" }),
+        "update currentActivity": assign((context, event) => {
+          if (context.currentActivity) {
+            const updatedActivity = context.currentActivity.children.map(
+              (child) => {
+                if (child.id === event.payload.id) {
+                  return event.payload;
+                }
+                return child;
+              }
+            );
+
+            return {
+              currentActivity: {
+                ...context.currentActivity,
+                children: updatedActivity,
+              },
+            };
+          }
+          return context;
+        }),
       },
       guards: {
         "has actitvity in url": (context, event) => {
