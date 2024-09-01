@@ -67,7 +67,7 @@ export type MultipleChoiceQuestion = {
   question: string;
   options: Array<{ id: string; option: string; image?: string }>;
   answer: Array<string>;
-  alloweNumberOfAttempts: number;
+  allowedNumberOfAttempts: number;
   attempt?: Array<string>;
   status: Status;
   id: string;

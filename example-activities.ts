@@ -84,7 +84,7 @@ export const WelcomeActivity: Activity = {
       ],
       answer: ["1", "2"],
       status: "not started",
-      alloweNumberOfAttempts: 1,
+      allowedNumberOfAttempts: 1,
       id: "8",
     },
   ],
