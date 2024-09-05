@@ -1,7 +1,9 @@
 import { createMachine, assign, raise } from "xstate";
+import type { AnyStateMachine } from "xstate";
 
 import { NavigateFunction } from "react-router-dom";
 import type { Activity } from "./types";
+import { createTextSlideMachine } from "./text-slide-machine";
 
 // not good enough, improve later
 function findMostProgress({
@@ -29,7 +31,7 @@ export const createAppMachine = ({
 }) =>
   createMachine(
     {
-      /** @xstate-layout N4IgpgJg5mDOIC5QEMAOqB0BhAFmAxgNYAEArgE4A2AxANoAMAuoqKgPawCWALp2wHYsQAD0QBaAMwSArBgBMcgByKAbAHZFcgJwBGTXJUAaEAE9EOvRgAsEtdJ0qFOq-QmK1AXw-G0mXARIKGlodZiQQdi5eASFRBEkdCWtpKw1Eq3cLYzMERwxbHXo5ekKraWl6LTkvH3QMABk2ZAhiADNyNgBbMipqcjBmkwYw1g4ePkFwuJU8iWcylRddCRVFbPM1HQxFKTkdOWlben0JGpBfBqaW9q6eygwANWRKTghkbjA74jfuZDomISRcYxKbmdTyehqNQGQp6Kxw9YIA5qfJWJRSeiHZR6FRnC6NZptDrdIKPZ6vd6fILfd5-EIjCJjaKTUBxPT0DDQrRaegqNzOHQ8iSIlYonZVBSQ6RaRQOKx4uoE67Eu4YADKODYAHdiAA3ck-CbEMDkDrkajU-A4ZD8GAQYaApkTWLibRyfLHORWFQWaWLORqRFWVLWFSYqEqaR8lS6eXec7oC2oH6ffAUfr8bgAQXwvF1PCGAPCQOZLoQ0mUGExqwkXu5e3ciLEiQwMsU0jUmK08M0c1O8YuObzBYwABEwB9yJ1OPxPrPhNxiMhc5x89wTP8GSXnaCEIUtCoq1CJc53KLEcjUeja-Rjjo1FoFZgh6uR+PJ9PZ8R54vl8P13QoSOlEO6suYkKHtKChzOo9A2CKKTbO4spQq4tZ6E+GAvmuJhjhOJqfnOYALkuK44XQchbk6IJgXuRRWFWRQGBUt6KK4QblK2BibN6jiqPCmHYW++FTjOREkX+r4AbQEhUSBNEiOBUacmx0LesxFRyIi0helW94yAGkYVqoglkcJH5id+xG-mZ0lWHJwIsopdHKRokJeo4RlFIiYYolIaiRmoqSYjIuIDnUQnrnhFlfj+pH-hutDSA5pa7poh61jpCj8cGmiIrKSQKLox5Qp2MpePG-BsBAcBCL4wGOWWYj2IeVQxgcDgBToTawvkFjBfCEhaCsFaYf4RB3A1qW0WI3qKFx7UtQFlRaIGpjmDosjtkosoZA4JRqP2tSYEqRK3EEU2gc5zaQhgcKqHMbZDXoiL3hyJTcoUFSDYo5XhSdVxnSSVBki8KZfD8yCXQpcTNVod2KBkfKCsoz1rOtSLStsOnYntYb3nGx2XISNzA-c40kDaLSwBO0NOXEthJGiEhopUPYpEYGMHPD22qGx-IuN6mGnaTqoatqeoGu8RommadNlptsjZcZdaJLYQYhvs7bKKkDbuGN-SUsQbDkMQVpsBwYDy7uki6QKfJVIdD5qU2PN2NojPoX60imQl1u0RGGBZdzjjBty6M5Pssgxpit5KAFNhhUTkW4e+BGWXFkk4f7zmaAxwd+l6VjhxeHatjy7v2L9mIpL7Um4QAmgAKnqrxgGwOdsm4+daOUsrKPRa05AGKIZAGModg4NY+-9WG2bhTfWcQsBg1bxbUfT5huGKD4ypiBxuCKdhViPOyQvC0IHHXOEYAAsqQlC8KglCppqnD4J8ACOpBwNNjLyZvPc28EZ7BKGUHSdgrAcSSCzYoHZoTwN7p4WeKcMCLxIt-X+V1twwy3qoUMRUUjBiOEPRAOktg2AML3TQ7Y4LXxHAAJWaHwYgmDYB-xwYAxI7hOQrBlA+KQbhhQYzDAxOwEgiiOE7IdH0Y0ujP3whATuG04J3QPAVIRnZtD5UKBgRYZQpB7X3EdBMmAcCcHYSbHIowAFCG4GwVAiBDy8XULWPsspXHGBfq0bgiBtDON7vjQ4xdITowAEZsG4PYzoZCGIuMOnIdxDh0bkE4FAHAviEDwgCVGEowSK7oy1K8bgOBzDFGMHgNJGTEAZGMHEfx1hAl5JZgUnyoYZgJKSa4iqHggA */
+      /** @xstate-layout N4IgpgJg5mDOIC5QEMAOqDEBXVFkBcwACAYywCdywA7fAQRPwEsA3J-ATwG0AGAXUShUAe1jsmw6oJAAPRAFYAHIoB0PeQDZFAZgBMAFgCch3QEZFAdgA0IDogC0p7SsPL5F9Yf3nd2pwF9-GzRUFQBhAAswEgBrIgoAGwxeASQQETFmSWk5BHttbXkVXV1lDQtFXUMfXQ0bOwRTcxV9bQt5Uw0S030ebUtA4PRwqNj48iSuU1ShUXFstNz8pxb5fQqnfUsm+sQulTbTHl0eI-15eR4TQZAQlQAZYWQIIgAzcmEAW3GkqmfufjSDLzKSLPb7Pz6c4aXrVbRaXaNCymFQ6PSmXTyNo8Sq+G53R7PN4fb6JFQANWQCSYeEIPyItOQyUBaWBWVBoFynQsxR4FgstSO5m8in0iMxPO0+lKBXU-UU5g0+OGhJe7y+PwpVJpBGIiQZBCZUxm6Tm7JyiHMPBUAuMPA0-R6pkMfUR8J5OhMJT58lcnX0ytCquJGrJAGUIsIAO5EFja2kSahEMCUYTkbATUgRZDUGAQFJAs2Ji15Kq6A44gwaJq+mG6ay2RBQnn6DTqfkaTTw6oBoK3YYMZhsTgqAAiYEI5E+TGoxFnMnwRGQjFY7A4zJNbOLYMaVw0an5Xp6lnd4vcB2laJOONMFkMgZUg9XI-Hk+ns6I88Xy6Ha+S00LTJt05S0+X3X0Sj8coeFaN01lRSwFX5Pp0UUB8n2HDgxwnFN3znMAFyXFdMOSXRNyLBYQN3Aw1GOWpLh4HFXUbBBziKExyh6DQukUGFTHQ4i12wt8Z3wwif2fdcuG0cigMo2RQM0G1cU0C5DHcCxtERC4UTaGFkShPovAsATfxfHCp1Ez8CO-QTOGSfRZJBEsjiUioCnMQxkT0LFERhQximqRRGNhZtTMk4TcKsr8iLMqT5Cc80d0qfcfJKUoYShSpEQVZwSmqQ9+Q8VxAj7ahhAgOBpBCQDnJ3ewOn3DiTEaixq0RRxTgOJotnWPQXW4+QH0iaI4kSWqkqo+xW1UZrMW5NtjAbBoa1ReRSgVLZOlOTSH2DdVSQmCbgIUvIjh5YVeL8VxPXMRFb2tU4bvmqFOh6PanjVElNUpalaT1TNGWO+Sll9FRLodZ1lG0IKzwCxR1uUY9ttvXshiDT6Q0OhIRlGpdqBeWAJ2BjlTraZxpSlE4vHMNY6hYzF4cRrQ+k2mClT7AlMYOzUI2jWN4wIRNk1TcgSZci5ilKJRKiMJw2kRZtwel5R1jMZQTM54Ywj+Ok0yzYRRDAcX6r0fRwe8B0TE0u8BTFFj7Hh9oqnJ9FayGrXQgwtcTaojsVHWkpawMIxXHujw1GdHtL09VpwswyLLI-GKJMw33TtlgP0uDqFjEUM8eTtZ2OkUF0LjR-svbsrCAE0ABVYxpMBhHTrl+nN30LgVZRjnWcV+RaSo7wR5FuJ0D30cfauVDrmyiFgP7jdZCjSbb5Rin5PRPWC0w4JRc4PARvpTlaQwOcn72RwAWSwBJmFQBJiBISMmBIYgAEcsDgSbTTk1fLXlAHUOMp5QunzixVsPJfBaGMKYEu-RtDxyErPQin9v4nS3CDABJgDg6DgQjUUFwtIsU0CiOBzZGLrX9EgkcAAlZ4EgiBoNgD-TB-9Gj9B5DbbYPUlB6D8g6FwtprzBUuKUYaXwH44QgK3S0ZxwZn1yggjwVQcpHBUJlLEUoFRHEMIgz2KgIhMBYWmBosw-7SHwMIVAewWjcXKHoPwjoHE2Efq8fAiAqj7iMJoU4WIjB8nAQAI2EPgKxnwFDm1bNxTSvgnAKgRCAcgTAoARA8axToLR1JtjgVKF0FQbBRhpPgCIloTg2CiCktJTZwG5C8Vk3xuSAkFJYt4+xsSnEJN2qVIAA */
       id: "app",
 
       initial: "Check url",
@@ -119,12 +121,10 @@ export const createAppMachine = ({
                 {
                   target: "YT video",
                   cond: "next is yt video",
-                  actions: "clear next activity",
                 },
                 {
                   target: "Text slide",
                   cond: "next is text slide",
-                  actions: "clear next activity",
                 },
                 {
                   target: "Multiple choice question",
@@ -146,7 +146,12 @@ export const createAppMachine = ({
             },
 
             "YT video": {},
-            "Text slide": {},
+            "Text slide": {
+              invoke: {
+                src: "text slide machine",
+                id: "textSlideMachine",
+              },
+            },
             "Multiple choice question": {},
             "Text question": {},
             "Radio question": {},
@@ -173,10 +178,7 @@ export const createAppMachine = ({
       actions: {
         "validate url data": assign((context, event) => {
           const locationHash = window.location.hash;
-          console.log(`locationHash: ${locationHash}`);
-          console.log(
-            `decodedUriComponent: ${decodeURIComponent(locationHash)}`
-          );
+
           let urlData;
           try {
             urlData = JSON.parse(decodeURIComponent(locationHash.substring(1)));
@@ -242,6 +244,7 @@ export const createAppMachine = ({
         }),
         "raise ready": raise({ type: "ready" }),
         "update currentActivity": assign((context, event) => {
+          console.log(`update currentActivity`, event.payload);
           if (context.currentActivity) {
             const updatedActivity = context.currentActivity.children.map(
               (child) => {
@@ -261,6 +264,7 @@ export const createAppMachine = ({
           }
           return context;
         }),
+        // @ts-ignore: called from child machines
         "clear next activity": assign((context, event) => {
           return {
             nextActivity: null,
@@ -310,6 +314,25 @@ export const createAppMachine = ({
               (child) => child.status !== "done"
             ).length === 0
           );
+        },
+      },
+      services: {
+        "text slide machine": (context, event) => {
+          console.log(`text slide machine`, context);
+          if (
+            context.nextActivity &&
+            context.nextActivity.type === "text-slide"
+          ) {
+            console.log(
+              "createTextSlideMachine",
+              JSON.stringify(context.nextActivity)
+            );
+            return createTextSlideMachine({
+              textSlide: context.nextActivity,
+            }) as AnyStateMachine;
+          } else {
+            throw new Error(`Invalid nextActivity`);
+          }
         },
       },
     }
