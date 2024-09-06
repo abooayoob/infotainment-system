@@ -32,9 +32,7 @@ function App() {
         <button onClick={() => setCount(count + 1)}>Increment</button>
         <div style={{ textAlign: "left" }}>
           <pre>{JSON.stringify(state.value, null, 2)}</pre>
-          <pre>
-            {JSON.stringify(state.context.nextActivity, null, 2).trim()}
-          </pre>
+          <pre>{JSON.stringify(state.context, null, 2).trim()}</pre>
         </div>
         {state.matches("Activity.Text slide") && textSlideActor && (
           <TextSlide
@@ -58,16 +56,6 @@ function TextSlide({
 }) {
   const [slideState, slideSend] = useActor(textSlideMachine);
   if (!textSlideMachine) return null;
-
-  // if (!appState.children["textSlideMachine"]) return null;
-
-  // console.log("appState", JSON.stringify(appState.children));
-
-  // const [slideState, slideSend] = useActor(
-  //   appState.children["textSlideMachine"] as ActorRefFrom<
-  //     typeof createTextSlideMachine
-  //   >
-  // );
 
   return (
     <div>

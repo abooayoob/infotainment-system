@@ -31,7 +31,7 @@ export const createAppMachine = ({
 }) =>
   createMachine(
     {
-      /** @xstate-layout N4IgpgJg5mDOIC5QEMAOqDEBXVFkBcwACAYywCdywA7fAQRPwEsA3J-ATwG0AGAXUShUAe1jsmw6oJAAPRAFYAHIoB0PeQDZFAZgBMAFgCch3QEZFAdgA0IDogC0p7SsPL5F9Yf3nd2pwF9-GzRUFQBhAAswEgBrIgoAGwxeASQQETFmSWk5BHttbXkVXV1lDQtFXUMfXQ0bOwRTcxV9bQt5Uw0S030ebUtA4PRwqNj48iSuU1ShUXFstNz8pxb5fQqnfUsm+sQulTbTHl0eI-15eR4TQZAQlQAZYWQIIgAzcmEAW3GkqmfufjSDLzKSLPb7Pz6c4aXrVbRaXaNCymFQ6PSmXTyNo8Sq+G53R7PN4fb6JFQANWQCSYeEIPyItOQyUBaWBWVBoFynQsxR4FgstSO5m8in0iMxPO0+lKBXU-UU5g0+OGhJe7y+PwpVJpBGIiQZBCZUxm6Tm7JyiHMPBUAuMPA0-R6pkMfUR8J5OhMJT58lcnX0ytCquJGrJAGUIsIAO5EFja2kSahEMCUYTkbATUgRZDUGAQFJAs2Ji15Kq6A44gwaJq+mG6ay2RBQnn6DTqfkaTTw6oBoK3YYMZhsTgqAAiYEI5E+TGoxFnMnwRGQjFY7A4zJNbOLYMaVw0an5Xp6lnd4vcB2laJOONMFkMgZUg9XI-Hk+ns6I88Xy6Ha+S00LTJt05S0+X3X0Sj8coeFaN01lRSwFX5Pp0UUB8n2HDgxwnFN3znMAFyXFdMOSXRNyLBYQN3Aw1GOWpLh4HFXUbBBziKExyh6DQukUGFTHQ4i12wt8Z3wwif2fdcuG0cigMo2RQM0G1cU0C5DHcCxtERC4UTaGFkShPovAsATfxfHCp1Ez8CO-QTOGSfRZJBEsjiUioCnMQxkT0LFERhQximqRRGNhZtTMk4TcKsr8iLMqT5Cc80d0qfcfJKUoYShSpEQVZwSmqQ9+Q8VxAj7ahhAgOBpBCQDnJ3ewOn3DiTEaixq0RRxTgOJotnWPQXW4+QH0iaI4kSWqkqo+xW1UZrMW5NtjAbBoa1ReRSgVLZOlOTSH2DdVSQmCbgIUvIjh5YVeL8VxPXMRFb2tU4bvmqFOh6PanjVElNUpalaT1TNGWO+Sll9FRLodZ1lG0IKzwCxR1uUY9ttvXshiDT6Q0OhIRlGpdqBeWAJ2BjlTraZxpSlE4vHMNY6hYzF4cRrQ+k2mClT7AlMYOzUI2jWN4wIRNk1TcgSZci5ilKJRKiMJw2kRZtwel5R1jMZQTM54Ywj+Ok0yzYRRDAcX6r0fRwe8B0TE0u8BTFFj7Hh9oqnJ9FayGrXQgwtcTaojsVHWkpawMIxXHujw1GdHtL09VpwswyLLI-GKJMw33TtlgP0uDqFjEUM8eTtZ2OkUF0LjR-svbsrCAE0ABVYxpMBhHTrl+nN30LgVZRjnWcV+RaSo7wR5FuJ0D30cfauVDrmyiFgP7jdZCjSbb5Rin5PRPWC0w4JRc4PARvpTlaQwOcn72RwAWSwBJmFQBJiBISMmBIYgAEcsDgSbTTk1fLXlAHUOMp5QunzixVsPJfBaGMKYEu-RtDxyErPQin9v4nS3CDABJgDg6DgQjUUFwtIsU0CiOBzZGLrX9EgkcAAlZ4EgiBoNgD-TB-9Gj9B5DbbYPUlB6D8g6FwtprzBUuKUYaXwH44QgK3S0ZxwZn1yggjwVQcpHBUJlLEUoFRHEMIgz2KgIhMBYWmBosw-7SHwMIVAewWjcXKHoPwjoHE2Efq8fAiAqj7iMJoU4WIjB8nAQAI2EPgKxnwFDm1bNxTSvgnAKgRCAcgTAoARA8axToLR1JtjgVKF0FQbBRhpPgCIloTg2CiCktJTZwG5C8Vk3xuSAkFJYt4+xsSnEJN2qVIAA */
+      /** @xstate-layout N4IgpgJg5mDOIC5QEMAOqDEBXVFkBcwACAYywCdywA7fAQRPwEsA3J-ATwG0AGAXUShUAe1jsmw6oJAAPRAFYAHIoB0PeQDZFAZgBMAFgCch3QEZFAdgA0IDogC0p7SsPL5F9Yf3nd2pwF9-GzRUFQBhAAswEgBrIgoAGwxeASQQETFmSWk5BHttbXkVXV1lDQtFXUMfXQ0bOwRTcxV9bQt5Uw0S030ebUtA4PRwqNj48iSuU1ShUXFstNz8pxb5fQqnfUsm+sQulTbTHl0eI-15eR4TQZAQlQAZYWQIIgAzcmEAW3GkqmfufjSDLzKSLPb7Pz6c4aXrVbRaXaNCymFQ6PSmXTyNo8Sq+G53R7PN4fb6JFQANWQCSYeEIPyItOQyUBaWBWVBoFynQsxR4FgstSO5m8in0iMxPO0+lKBXU-UU5g0+OGhJe7y+PwpVJpBGIiQZBCZUxm6Tm7JyiHMPBUAuMPA0-R6pkMfUR8J5OhMJT58lcnX0ytCquJGrJAGUIsIAO5EFja2kSahEMCUYTkbATUgRZDUGAQFJAs2Ji15Kq6A44gwaJq+mG6ay2RBQnn6DTqfkaTTw6oBoK3YYMZhsTgqAAiYEI5E+TGoxFnMnwRGQjFY7A4zJNbOLYMaVw0an5Xp6lnd4vcB2laJOONMFkMgZUg9XI-Hk+ns6I88Xy6Ha+S00LTJt05S0+X3X0Sj8coeFaN01lRSwFX5Pp0UUB8n2HDgxwnFN3znMAFyXFdMOSXRNyLBYQN3Aw1GOWpLh4HFXUbBBziKExyh6DQukUGFTHQ4i12wt8Z3wwif2fdcuG0cigMo2RQM0G1cU0C5DHcCxtERC4UTaGFkShPovAsATfxfHCp1Ez8CO-QTOGSfRZJBEsjiUioCnMQxkT0LFERhQximqRRGNhZtTMk4TcKsr8iLMqT5Cc80d0qfcfJKUoYShSpEQVZwSmqQ9+Q8VxwpIkgEjAZByGs8S7IBRLgIUxpFCxG0ujbbwunUW9ES2fQXFMDozHkE4NEMLpAj7ahhAgOBpBCQDnJ3ewOn3DiTFWixq0RRxTgOJoticbQ4QdB9ImiOJEkWpKqPsVtVHWzFuTbYwGwaGtURG5Rj06U5NIfYN1VJCZrsapYjh5YVeL8VxPXMRFb2tU5XF9Ew2jaAwAaeNUSU1SlqVpPVM0ZUH5KWX0VChh1nWUY74ZYzEApa0oFUOttb17IYg2xkNgYSEYLqXagXlgCdSY5Jr0ZaXxpSuEU1jqBmKeZ3jgsdXpWyxokgc1CNo1jeMCETZNU3IcWXIuYpSiUSojCOt6m3WSnreUdYzGUEy+zuMI-jpNMs2EUQwHN5a9H6p0HRMTS7wFMUWPsJn2iqdH0VreRSrXEOqI7FQRpKWsDCMVwEY8NRnUMbRTntf1Pa5x86siyyPxiiTMKzprbdz9KC6hYxFDPHk7STjpFBdC5Of7UIMKEgBNAAVWMaTAYR265fp+t9C4FWUY51nFfkWkqO8WuRbidHTr2BwbuebKIWACeD1kKIltflGKfk9E9YLTDglFzg8FqfRTitHGhnEcABZLACRmCoAqgHJgJBiAAEcsBwBuqaOSL9LTylzkXGU8oXT9xYq2HkvgtDGEGuYfo2gwFYRvoRFBaDGpbjJtgkwBwdCDRaqKC4WkWKaBRINZsjERr+loSoAASs8CQRBGGwHQSwrBjR+g8mjtsA6Sg9B+QdC4W015gqXFKGdL4sCcIQFXpaM4lNxq5WoR4KoOUjgqEyliKUCojgVwfBEJg8i0wNFmJg6Q+BhCoD2C0bi5Q9B+EdJEmwFVXj4EQFUfcRhNCnCxEYPkRCABGwh8DBM+AofqrZuKaV8E4BUCIQDkCYFACIiTWKdBaOpdmGSXQVBsFGGk+AIiWhODYKItT6lNiIbkZJzS0mDSlO0ohDQUkRLKdEyp-1L5Twbt43x5B-EYKWlRTo7C-DqFOJ2Cuvo+ENC2M4AoDo2jbDMBiSa-ggA */
       id: "app",
 
       initial: "Check url",
@@ -56,6 +56,7 @@ export const createAppMachine = ({
         events: {} as
           | { type: "url changed" }
           | { type: "ready" }
+          | { type: "clear next activity" }
           | {
               type: "update currentActivity";
               payload: Activity["children"][number];
@@ -146,18 +147,31 @@ export const createAppMachine = ({
             },
 
             "YT video": {},
+
             "Text slide": {
               invoke: {
                 src: "text slide machine",
                 id: "textSlideMachine",
               },
             },
+
             "Multiple choice question": {},
             "Text question": {},
             "Radio question": {},
+            history: {
+              type: "history",
+              history: "deep",
+            },
           },
 
           initial: "Determine next activity",
+
+          on: {
+            "clear next activity": {
+              target: ".history",
+              actions: "clear next activity",
+            },
+          },
         },
 
         Completed: {},
@@ -264,7 +278,6 @@ export const createAppMachine = ({
           }
           return context;
         }),
-        // @ts-ignore: called from child machines
         "clear next activity": assign((context, event) => {
           return {
             nextActivity: null,
