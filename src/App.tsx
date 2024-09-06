@@ -8,9 +8,9 @@ import { useActor, useMachine } from "@xstate/react";
 import type { Actor, ActorRefFrom } from "xstate";
 import { createAppMachine } from "./app-machine";
 import { createTextSlideMachine } from "./text-slide-machine";
+import { TextSlide } from "./TextSlide";
 
-function App() {
-  const [count, setCount] = useState(0);
+export function App() {
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -28,8 +28,6 @@ function App() {
   return (
     <>
       <div>
-        <h3>{count}</h3>
-        <button onClick={() => setCount(count + 1)}>Increment</button>
         <div style={{ textAlign: "left" }}>
           <pre>{JSON.stringify(state.value, null, 2)}</pre>
           <pre>{JSON.stringify(state.context, null, 2).trim()}</pre>
@@ -48,25 +46,3 @@ function App() {
     </>
   );
 }
-
-function TextSlide({
-  textSlideMachine,
-}: {
-  textSlideMachine: ActorRefFrom<typeof createTextSlideMachine>;
-}) {
-  const [slideState, slideSend] = useActor(textSlideMachine);
-  if (!textSlideMachine) return null;
-
-  return (
-    <div>
-      <h1>{slideState.context.textSlide.title}</h1>
-      <p>{slideState.context.textSlide.content}</p>
-      <button onClick={() => slideSend({ type: "done reading" })}>
-        Done Reading
-      </button>
-      Hello
-    </div>
-  );
-}
-
-export default App;
