@@ -17,7 +17,7 @@ export function App() {
   const appMachineCreator = useCallback(createAppMachine, []);
   const appMachine = useMemo(() => appMachineCreator({ navigate }), []);
 
-  const [state, send, actor] = useMachine(appMachine);
+  const [state, send, actor] = useMachine(appMachine, { devTools: true });
   let textSlideActor = actor.children.get("textSlideMachine");
 
   React.useEffect(() => {

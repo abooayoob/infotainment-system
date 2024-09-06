@@ -8,7 +8,7 @@ export const createTextSlideMachine = ({
 }) =>
   createMachine(
     {
-      /** @xstate-layout N4IgpgJg5mDOIC5QBcwA9kFpYBsCWEYAdACJ6wAOOAhgJ4AEqGAxBAPYB2Y9ATmNRDwcoAbQAMAXUSgKbWHmR5O0kGkSYAjACYALEQCsAZn079YgGwB2LSbFidAGhC11GsZaIBOfeYAcGy0MdDSNArQBfcKcmLFwCYjJKGgYY5jRYZGpUImoAM1QeAAo3OwBKZhjsfEJScio6RnRkcSkkEFl5RWU2tQRMQy0NA31PbTF9DUNtTx1LJxcETyJDK30tS08tQ0sNXfN9SKiQDjZCeDbKuMIVDoUlDhVezB1gol93UwHNz08xQ3n1FtzAZfJZ9L53mItFpflpzJFok0qvFakkGjEbnI7t1QE9DJ5DG8PkYYTDfv9nK4dEs4TorKY-pYwd4ESBLtUEpwwJjOvdHogJkQ-BpfOZgu5Aht9gC+m4aWINOYxO9zPtDEEIocgA */
+      /** @xstate-layout N4IgpgJg5mDOIC5QBcwA9kFpYBsCWEYAdACJ6wAOOAhgJ4AEqGAxBAPYB2Y9ATmNRDwcoAbQAMAXUSgKbWHmR5O0kGkSYAjGIAsRABwB2PQFYAbGI0bjegMwGATKYA0IWuo02xRG9oPabAJwGAfYaQWKmAL6RLkxYuATEZJQ0DHHMaLDI1KhE1ABmqDwAFFpiYgCUzHHY+ISk5FR0jOjI4lJIILLyisqdagiYNqFExsYBGvZixh6TAb4ubggB3qYGxvbB9naWGqbG0TEgHGyE8J01CYQq3QpKHCoDmNraGvpifsbDIQEBYjaLdTbUyjQzWPTlez2P42aKxVq1RINFLNOI3OR3PqgJ6BGzvT7faEwwGDDTaFaObRrbTGf4GdYBA5HS51JKcMDonr3R6IdZEbbzMJ6EymF4LVzuMQUizmCGmfY2Hz2Q6RIA */
       id: "text-slide",
       predictableActionArguments: true,
       preserveActionOrder: true,
@@ -28,7 +28,10 @@ export const createTextSlideMachine = ({
       states: {
         "Display text": {
           on: {
-            "done reading": "Done",
+            "done reading": {
+              target: "Done",
+              actions: ["update status", "update app"],
+            },
           },
 
           entry: "app clear next activity",
@@ -55,7 +58,10 @@ export const createTextSlideMachine = ({
           return {
             textSlide: {
               ...context.textSlide,
-              status: "in progress" as const,
+              status:
+                event.type === "done reading"
+                  ? ("done" as const)
+                  : ("in progress" as const),
             },
           };
         }),
