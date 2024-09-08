@@ -1,7 +1,4 @@
 import { useMemo, useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
 import { useLocation, Link, Outlet, useNavigate } from "react-router-dom";
 import React, { useCallback } from "react";
 import { useActor, useMachine } from "@xstate/react";
@@ -28,10 +25,10 @@ export function App() {
   return (
     <>
       <div>
-        <div style={{ textAlign: "left" }}>
+        {/* <div style={{ textAlign: "left" }}>
           <pre>{JSON.stringify(state.value, null, 2)}</pre>
           <pre>{JSON.stringify(state.context, null, 2).trim()}</pre>
-        </div>
+        </div> */}
         {state.matches("Activity.Text slide") && textSlideActor && (
           <TextSlide
             textSlideMachine={
