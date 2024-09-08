@@ -33,7 +33,7 @@ export type YtVideo = {
   description?: string;
   startAt: number;
   endAt?: number;
-  progress?: number;
+  lastPosition?: number;
   status: Status;
   ytId: string;
   id: string;
