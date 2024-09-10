@@ -18,7 +18,7 @@ function findMostProgress({
 
   const urlIndex = url.children.findIndex((c) => c.status !== "not started");
   const localIndex = local.children.findIndex(
-    (c) => c.status !== "not started"
+    (c) => c.status !== "not started",
   );
 
   return localIndex > urlIndex ? local : url;
@@ -31,7 +31,7 @@ export const createAppMachine = ({
 }) =>
   createMachine(
     {
-      /** @xstate-layout N4IgpgJg5mDOIC5QEMAOqDEBXVFkBcwACAYywCdywA7fAQRPwEsA3J-ATwG0AGAXUShUAe1jsmw6oJAAPRAFYAHIoB0PeQDZFAZgBMAFgCch3QEZFAdgA0IDogC0p7SsPL5F9Yf3nd2pwF9-GzRUFQBhAAswEgBrIgoAGwxeASQQETFmSWk5BHttbXkVXV1lDQtFXUMfXQ0bOwRTcxV9bQt5Uw0S030ebUtA4PRwqNj48iSuU1ShUXFstNz8pxb5fQqnfUsm+sQulTbTHl0eI-15eR4TQZAQlQAZYWQIIgAzcmEAW3GkqmfufjSDLzKSLPb7Pz6c4aXrVbRaXaNCymFQ6PSmXTyNo8Sq+G53R7PN4fb6JFQANWQCSYeEIPyItOQyUBaWBWVBoFynQsxR4FgstSO5m8in0iMxPO0+lKBXU-UU5g0+OGhJe7y+PwpVJpBGIiQZBCZUxm6Tm7JyiHMPBUAuMPA0-R6pkMfUR8J5OhMJT58lcnX0ytCquJGrJAGUIsIAO5EFja2kSahEMCUYTkbATUgRZDUGAQFJAs2Ji15Kq6A44gwaJq+mG6ay2RBQnn6DTqfkaTTw6oBoK3YYMZhsTgYEgJMDIchEahgGT4IjIRisdgAk1s4tgxqKLE2rpt7xddSmBsNLb6FymDpmeQnDSGLqBlSD5ecFQAETAhHInyYM+ns-nRchxXZk1yLBZOUtK4NDUfkvR6Sx3XFdwDmlNEThxY9DEfZ9hw4d9PxTH8-xnOcFyXPDkmmQtMg3SDGj5GDfRKPxyh4Vo3TWVFLAVfk+nRRQcIolcCK-YjiFIwDhJHLhdDA2iINkKCDDUY5akuHgcVdRsEHOIoTHKHoNC6RQYVMITgNfD8xN-CSAPIyyOGSbR5JBEsjk0G1cU0C5DHcCxtERC4UTaGFkShPovAsCyX3w6yiNs-8yKA2Lkn0VzzU3DyYIqApzEMZE9CxREYUMYpqkUTTYWbGK8NEhKSPslLKK4eQMropSEEqGCipKUoYShSpEQVZwSmqOD+Q8VxapEgAVezYGpCAwAwCBJDAFRfxYYQYg2wg5zDJawAAWUXCJbILVlwI5TqjPPKFmJMnovF0RFOlUbQtMMfpOxxVpez7ahhGW+A0hCGi3M3ewOhggyTBhixq0RRxTgOJptHvbF1ihR9ImiOJEghzL6PsVtVDhzFuTbYwT0tS9URvZQEM6U4AsfYN1VJCYiY6pYjh5YVTL8VxPXMN6PDUDC+XrdpFAK6K+wJJ41RJTVKSW3V6UZHnFKWX0VEFh1nWUDGxZ0zEyu3UoFS2Fnj17IYg2VkMuYSEZ8YXagXlgT8dZu3I2mcaUpROLxzDWOpzf1q3TMqx1elbdnnc5zUI2jWN4wIRNk1Tcg-fci5ilKJRKiMJw2kRZsDeL5R1jMZQFcd8I-jpNMs2EUQwHzqG9HPJ0HRMAKLAKgxkct9oqkD9Fa3kGbOG7+iOxUG8SlrAwjFcYbrVcG8tBxSwvVnxWB2kuLCO-RLJIc2KF860vl76teoWMRRkJ5O0J46OX1DWOf8IATVmrGGkYBhC3y5P0c8voLgKmUMcdY4p+QtEqMPbcyJjI6CPk3XCc0FpHXAZaeUxR+R6E9JVUwnEUTnA8NuPopxWj3j-ioY6WAEjMFQOOduTASDEAAI5YDgMTU0Cl-aEOUMvDeMp5QulfjpVsPJfBaGMJecw-RtBMPmmRfhgiOrrl1oQkwBwdCXm3KKC4gUdKaBRJeZsmkbz+iYQAJWeBIIg2jYBCL0aIxo-QeRD22E0c4OhXo6WMs4EeJhNKVUuKUJh50PFpgaLMER7k7zlj8OoU4nZvq+gsaeHQBx4QFAqMiMwGJcZfA4YRCABDGhnANveEaaiPBVGGkcFQA0sRSgVEcb6j54n4ESbfQZqA9gtGMuUPQfhHSTJsOOV4+BEBVBgkYTQpwsRGD5LIgARsIfAgzPgKHuhMgKvgnAKgRCAcgTAoAREWbpToLQ-JtkvFKF0FQbBRhpPgCIloTg2CiDcu5TZZG5GWU8tZrzNkfNCeM4ypzpkXLZoEfwQA */
+      /** @xstate-layout N4IgpgJg5mDOIC5QEMAOqDEBXVFkBcwACAYywCdywA7fAQRPwEsA3J-ATwG0AGAXUShUAe1jsmw6oJAAPRAFYAHIoB0PeQDZFAZgBMAFgCch3QEZFAdgA0IDogC0p7SsPL5F9Yf3nd2pwF9-GzRUFQBhAAswEgBrIgoAGwxeASQQETFmSWk5BHttbXkVXV1lDQtFXUMfXQ0bOwRTcxV9bQt5Uw0S030ebUtA4PRwqNj48iSuU1ShUXFstNz8pxb5fQqnfUsm+sQulTbTHl0eI-15eR4TQZAQlQAZYWQIIgAzcmEAW3GkqmfufjSDLzKSLPb7Pz6c4aXrVbRaXaNCymFQ6PSmXTyNo8Sq+G53R7PN4fb6JFQANWQCSYeEIPyItOQyUBaWBWVBoFynQsxR4FgstSO5m8in0iMxPO0+lKBXU-UU5g0+OGhJe7y+PwpVJpBGIiQZBCZUxm6Tm7JyiHMPBUAuMPA0-R6pkMfUR8J5OhMJT58lcnX0ytCquJGrJAGUIsIAO5EFja2kSahEMCUYTkbATUgRZDUGAQFJAs2Ji15Kq6A44gwaJq+mG6ay2RBQnn6DTqfkaTTw6oBoK3YYMZhsTgYEgJMDIchEahgGT4IjIRisdgAk1s4tgxqWfQuTTuQodCznUyI1vl53qPrI4xaXtDUKD5ecFQAETAhHInyYM+ns-ni6HFdmTXIsFk5S0rg0NR+S9HpLHdcV3AOaU0ROHFTAsQxAxUR9hw4V93xTL8fxnOcFyXPDkmmQtMg3cDGj5KDfRKPxyh4Vo3TWVFLAVfk+nRRRsNwlcCI-YjiFI-8KKArhdBA2iwNkCCDDUY5akuHgcVdRsEHOIoTHKHoNC6RQYVMITpOfN8xO-CS-3IwCRy4bR5JBEsjk0G1cT3X13AsbREQuFE2hhZEoT6LwLAsxz8OsojbN-MiAKfDhkn0VzzU3DyoIqApzEMZE9CxREYUMYpqkUTTYWbaKUtE+KSPs5LKK4eQMropSEEqKCipKUoYShSpEQVZwSmqGD+Q8VxarwlQABV7NgakIDADAIEkMAVG-FhhBiTbCDnMNlrAABZRcIlsgtWVAjlOqMncoWYkyei8XREU6VRtC0wx+k7HFWl7PtqGEFb4DSEIaLczd7A6KCDJMWGLGrRFHFOA4mi2WFakMYzdGwyJojiRJIcy+j7FbVR4cxbk22MBsGhrVF5FKBUtk6U5-Ow4N1VJCYSY6pYjh5YVTL8VxPXMd6PDUZ1xtMo93HULmnjVElNUpZbdXpRl+cUpZfRUEWHWdZRtAqxCysUZnlDg9mMLvfsgxVkNeYSEZCYXagXlgd9ddu3I2mcaUpROLxzDWOodMxS3ra0PpWfYpU+wJZ2ec1CNo1jeMCETZNU3IP33IuYpSiUSojCcNpT3WQ3S+UdYzGUKLk+GMI-jpNMs2EUQwEL6G9B3J0HRMfzMIFMUdPsS32iqQP0VreQZpXPv6I7FRmZKWsDCMVxhutVwOkq+FOw8Pol6swjPwSySHJSlfOvL9e+q3qFjEURCeTtGfD5dC4HbuYSz4ACac1Yw0jAMIe+XJ+g7l8kocwlUDD00QPWFslRMJW2RMZHQi8W4PksvhBaZElrgKgZaeUxR+R6E9JVE8OlCgonOB4K2fRTitBxuffCJ0sAJGYKgccXcmAkGIAARywHAUmpoFL+3IcodeO8ZTyhdO-HSrYeS+C0MYUwh9+jaE4fNeyYiJEdXXHrchJgDg6G0VbUUFwAo6U0CibRzZNLM39PogASs8CQRAjGwEkaYmRjR+g8lHtsDGSg9AlQdC4W0aFKqXFKPoi6-i0wNFmNI9yGgLF+EvJ0X0hQfqnh0AceEBQKjIjMBifGXx+GEQgGQxoZxDY4xGrojwVRhpHBUANLEUoFRHB+thFJ+A0n31GagPYLRjLlD0H4R0sybDjlePgFBOMWiGE0KcLERg+QqIAEbCHwKMz4CgHozP8r4JwCoEQgHIEwKAERVm6U6BsrZ2ipQugqDYKMNJ8AREtCcGwUQHlPKbCo3IVQoJGHeTsr5KiGjQouXM653I9GBH8EAA */
       id: "app",
 
       initial: "Check url",
@@ -267,7 +267,7 @@ export const createAppMachine = ({
                   return event.payload;
                 }
                 return child;
-              }
+              },
             );
 
             return {
@@ -288,7 +288,8 @@ export const createAppMachine = ({
           if (context.currentActivity) {
             const nextActivity = context.currentActivity.children.find(
               (child) =>
-                child.status === "not started" || child.status === "in progress"
+                child.status === "not started" ||
+                child.status === "in progress",
             );
 
             return {
@@ -325,7 +326,7 @@ export const createAppMachine = ({
         "all is completed": (context, event) => {
           return (
             context.currentActivity?.children.filter(
-              (child) => child.status !== "done"
+              (child) => child.status !== "done",
             ).length === 0
           );
         },
@@ -339,7 +340,7 @@ export const createAppMachine = ({
           ) {
             console.log(
               "createTextSlideMachine",
-              JSON.stringify(context.nextActivity)
+              JSON.stringify(context.nextActivity),
             );
             return createTextSlideMachine({
               textSlide: context.nextActivity,
@@ -349,5 +350,5 @@ export const createAppMachine = ({
           }
         },
       },
-    }
+    },
   );

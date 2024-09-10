@@ -1,6 +1,7 @@
 import { useActor } from "@xstate/react";
 import { ActorRefFrom } from "xstate";
 import { createTextSlideMachine } from "./text-slide-machine";
+import { Button } from "@nextui-org/react";
 
 export function TextSlide({
   textSlideMachine,
@@ -14,9 +15,9 @@ export function TextSlide({
     <div>
       <h1>{slideState.context.textSlide.title}</h1>
       <p>{slideState.context.textSlide.content}</p>
-      <button onClick={() => slideSend({ type: "done reading" })}>
+      <Button onClick={() => slideSend({ type: "done reading" })}>
         Done Reading
-      </button>
+      </Button>
     </div>
   );
 }

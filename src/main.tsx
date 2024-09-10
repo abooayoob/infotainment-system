@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import { App } from "./App.tsx";
 import { NextPage } from "./NextPage.tsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import "./main.css";
 
 if (import.meta.env.VITE_REACT_APP_X_STATE_INSPECTOR === "true") {
   import("@xstate/inspect").then(({ inspect }) => {

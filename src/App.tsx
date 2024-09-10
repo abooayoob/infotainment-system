@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { useLocation, Link, Outlet, useNavigate } from "react-router-dom";
 import React, { useCallback } from "react";
+import { NextUIProvider } from "@nextui-org/react";
 import { useActor, useMachine } from "@xstate/react";
 import type { Actor, ActorRefFrom } from "xstate";
 import { createAppMachine } from "./app-machine";
@@ -23,8 +24,8 @@ export function App() {
   }, [location]);
 
   return (
-    <>
-      <div>
+    <NextUIProvider>
+      <main className="grid h-full min-h-screen w-full min-w-full bg-background text-foreground dark">
         {/* <div style={{ textAlign: "left" }}>
           <pre>{JSON.stringify(state.value, null, 2)}</pre>
           <pre>{JSON.stringify(state.context, null, 2).trim()}</pre>
@@ -37,9 +38,9 @@ export function App() {
           />
         )}
         {/* <Link to="/next-page/34">Next Page</Link> */}
-      </div>
+      </main>
 
       {/* <Outlet /> */}
-    </>
+    </NextUIProvider>
   );
 }
